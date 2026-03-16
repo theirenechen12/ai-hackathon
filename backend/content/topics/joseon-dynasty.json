@@ -1,0 +1,167 @@
+{
+  "id": "joseon-dynasty",
+  "title": "The Joseon Dynasty",
+  "subtitle": "Korea's Last Great Kingdom, 1392–1897",
+  "search_scope": "Joseon Dynasty Korea history",
+  "primer": "The Joseon Dynasty was one of the longest-ruling dynasties in world history, governing Korea from 1392 to 1897 — over 500 years. Founded by General Yi Seonggye, who became King Taejo, the dynasty replaced the Goryeo Kingdom and established its capital at Hanyang, the city we know today as Seoul.\n\nJoseon society was deeply shaped by Neo-Confucianism, a philosophy that emphasized loyalty, respect for elders, education, and proper social order. This influenced everything from how families were structured to how the government was run. The dynasty is famous for remarkable achievements including the creation of the Hangul alphabet by King Sejong the Great, the development of a sophisticated civil service examination system, and the production of the Joseon Annals — one of the most detailed historical records ever compiled.\n\nDespite facing invasions from Japan and Manchuria in the late 16th and 17th centuries, Joseon endured and adapted. The dynasty officially ended in 1897 when King Gojong proclaimed the Korean Empire, and Korea was later annexed by Japan in 1910. Today, the legacy of the Joseon Dynasty is visible in Korean language, culture, architecture, and identity.",
+  "trivia_questions": [
+    {
+      "id": "q1",
+      "question": "What philosophy did the Joseon Dynasty adopt as its state ideology?",
+      "choices": ["Buddhism", "Neo-Confucianism", "Taoism", "Shamanism"],
+      "correct_answer": "Neo-Confucianism",
+      "explanation": "The Joseon Dynasty adopted Neo-Confucianism as its official state ideology, replacing Buddhism which had dominated the previous Goryeo Dynasty. Neo-Confucianism emphasized social hierarchy, filial piety, loyalty to the king, and the importance of education and moral self-cultivation. This philosophy shaped every aspect of Joseon society — from how the government was organized to how families lived their daily lives.",
+      "curated_sources": [
+        {
+          "title": "Neo-Confucianism in Joseon Korea — Encyclopedia Britannica",
+          "url": "https://www.britannica.com/topic/Confucianism",
+          "description": "Overview of Confucian philosophy and its profound influence on East Asian societies including Korea."
+        },
+        {
+          "title": "Joseon Dynasty — World History Encyclopedia",
+          "url": "https://www.worldhistory.org/Joseon_Dynasty/",
+          "description": "Detailed article covering the founding, ideology, and cultural achievements of the Joseon Dynasty."
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Which king of Joseon created the Hangul alphabet?",
+      "choices": ["King Taejo", "King Taejong", "King Sejong", "King Seonjo"],
+      "correct_answer": "King Sejong",
+      "explanation": "King Sejong the Great (reign 1418–1450) created Hangul in 1443, officially promulgating it in 1446 through a document called Hunminjeongeum (\"The Correct Sounds for the Instruction of the People\"). Before Hangul, Koreans used Classical Chinese characters, which were extremely difficult to learn. Sejong wanted ordinary people — farmers, merchants, and women — to be able to read and write. Hangul was scientifically designed and consists of 14 consonants and 10 vowels.",
+      "curated_sources": [
+        {
+          "title": "Hangul — Korean Writing System — Britannica",
+          "url": "https://www.britannica.com/topic/Hangul",
+          "description": "History of the Hangul alphabet, its design principles, and King Sejong's motivations for creating it."
+        },
+        {
+          "title": "King Sejong the Great — World History Encyclopedia",
+          "url": "https://www.worldhistory.org/King_Sejong_the_Great/",
+          "description": "Comprehensive profile of King Sejong, his reign, and his lasting contributions to Korean civilization."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What was the capital city of the Joseon Dynasty?",
+      "choices": ["Goryeo", "Pyongyang", "Hanyang", "Gyeongju"],
+      "correct_answer": "Hanyang",
+      "explanation": "Hanyang was the capital of the Joseon Dynasty throughout its entire history, from 1392 to 1897. It was strategically chosen for its location — surrounded by mountains that provided natural defense and situated near the Han River for trade and transport. Today, Hanyang is known as Seoul, the capital of South Korea. The grand Gyeongbokgung Palace, built in 1395, still stands in Seoul as a symbol of Joseon's power.",
+      "curated_sources": [
+        {
+          "title": "Hanyang (Seoul) — Capital of Joseon — Visit Seoul",
+          "url": "https://www.britannica.com/place/Seoul",
+          "description": "History of Seoul from its founding as Hanyang through the Joseon period to the modern capital."
+        },
+        {
+          "title": "Gyeongbokgung Palace — UNESCO Memory of the World",
+          "url": "https://www.worldhistory.org/Gyeongbokgung/",
+          "description": "The grand palace complex at the heart of Hanyang, built in 1395 as the seat of Joseon royal power."
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Who founded the Joseon Dynasty in 1392?",
+      "choices": ["King Sejong", "Yi Seonggye", "Wang Geon", "Gwanggaeto the Great"],
+      "correct_answer": "Yi Seonggye",
+      "explanation": "General Yi Seonggye founded the Joseon Dynasty in 1392, becoming King Taejo (\"Grand Progenitor\"). He had been a powerful military general who gained fame defending Korea against Japanese pirates and Mongol incursions. In 1388, he staged a coup at Wihwa Island rather than invade Ming China as ordered, returning his army to seize power. He deposed the last Goryeo king and established the Joseon Dynasty, adopting Neo-Confucianism as its guiding philosophy.",
+      "curated_sources": [
+        {
+          "title": "Taejo of Joseon — World History Encyclopedia",
+          "url": "https://www.worldhistory.org/Taejo_of_Joseon/",
+          "description": "Biography of Yi Seonggye and the founding of the Joseon Dynasty in 1392."
+        },
+        {
+          "title": "Joseon Dynasty — Britannica",
+          "url": "https://www.britannica.com/place/Joseon-dynasty",
+          "description": "Encyclopedic overview of the dynasty's founding, key rulers, and historical significance."
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "question": "What was the name of the massive historical record kept by the Joseon government?",
+      "choices": ["Samguk Sagi", "Joseon Wangjo Sillok", "Hunminjeongeum", "Gyeonggukdaejeon"],
+      "correct_answer": "Joseon Wangjo Sillok",
+      "explanation": "The Joseon Wangjo Sillok, or \"Annals of the Joseon Dynasty,\" is one of the most comprehensive historical records ever compiled — spanning 472 years across 25 reigns. Court historians called saegwan recorded virtually everything: royal decisions, natural disasters, astronomical observations, diplomatic events, and even weather. The records were so valued that four separate copies were made and stored in remote mountain archives for protection. Today they are a UNESCO Memory of the World heritage.",
+      "curated_sources": [
+        {
+          "title": "Annals of the Joseon Dynasty — UNESCO Memory of the World",
+          "url": "https://www.britannica.com/topic/Annals-of-the-Joseon-Dynasty",
+          "description": "About the 472-year historical record and its recognition as a world heritage document."
+        },
+        {
+          "title": "Joseon Royal Court Records — World History Encyclopedia",
+          "url": "https://www.worldhistory.org/article/2033/",
+          "description": "How the Joseon court historians recorded events and why these records are historically priceless."
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "question": "Which major invasion severely damaged Joseon in the 1590s?",
+      "choices": ["The Mongol Invasion", "The Japanese Invasions (Imjin War)", "The Qing Dynasty Invasion", "The Tang Dynasty Incursion"],
+      "correct_answer": "The Japanese Invasions (Imjin War)",
+      "explanation": "Japan, then unified under Toyotomi Hideyoshi, invaded Korea in 1592 and again in 1597 — conflicts known as the Imjin War (임진왜란). The invasions were devastating, destroying much of the country, burning palaces, and killing hundreds of thousands of people. Korea survived partly thanks to the genius of Admiral Yi Sun-sin, who used innovative \"turtle ships\" (geobukseon) to devastate the Japanese navy. Ming China also sent forces to help defend Joseon. The war ended with Hideyoshi's death in 1598.",
+      "curated_sources": [
+        {
+          "title": "Imjin War — Japanese Invasion of Korea — World History Encyclopedia",
+          "url": "https://www.worldhistory.org/Imjin_War/",
+          "description": "Full account of the 1592–1598 Japanese invasions, the role of Admiral Yi Sun-sin, and Joseon's survival."
+        },
+        {
+          "title": "Admiral Yi Sun-sin and the Turtle Ship — Britannica",
+          "url": "https://www.britannica.com/biography/Yi-Sun-shin",
+          "description": "Profile of Korea's greatest naval commander and his innovative iron-clad turtle ships."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "question": "What was the gwageo in Joseon society?",
+      "choices": ["A royal palace", "A civil service examination", "A Buddhist temple", "A type of military weapon"],
+      "correct_answer": "A civil service examination",
+      "explanation": "The gwageo (과거) was the civil service examination system that governed entry into Joseon's bureaucracy. Inspired by the Chinese imperial exam system, it tested candidates on Confucian classics, history, literature, and governance. In theory it was open to all free men regardless of birth, but in practice wealthy yangban (noble) families dominated because studying for years required financial support. Passing the gwageo was the most prestigious achievement a scholar could attain and opened the door to government positions.",
+      "curated_sources": [
+        {
+          "title": "Gwageo Civil Service Exam — World History Encyclopedia",
+          "url": "https://www.worldhistory.org/article/1519/gwageo-civil-service-exam-of-korea/",
+          "description": "Explanation of how the gwageo exam worked, who took it, and its role in Joseon society."
+        },
+        {
+          "title": "Joseon Social Structure and the Yangban — Britannica",
+          "url": "https://www.britannica.com/topic/yangban",
+          "description": "Overview of Joseon's four-tier social hierarchy and how the yangban elite maintained power."
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "question": "In what year did the Joseon Dynasty officially end?",
+      "choices": ["1876", "1897", "1910", "1945"],
+      "correct_answer": "1897",
+      "explanation": "The Joseon Dynasty officially ended in 1897 when King Gojong proclaimed the Great Han Empire (Daehan Jeguk), renaming the kingdom and declaring himself emperor — equal in status to the Chinese and Japanese emperors. This was partly a symbolic act of asserting Korean sovereignty amid growing pressure from Japan and other foreign powers. However, the empire was short-lived. Japan effectively took control through the 1905 Eulsa Treaty and formally annexed Korea in 1910, ending Korean independence until 1945.",
+      "curated_sources": [
+        {
+          "title": "Korean Empire (1897–1910) — World History Encyclopedia",
+          "url": "https://www.worldhistory.org/Korean_Empire/",
+          "description": "The transition from Joseon Dynasty to the Korean Empire and the events leading to Japanese annexation."
+        },
+        {
+          "title": "King Gojong and the End of Joseon — Britannica",
+          "url": "https://www.britannica.com/biography/Gojong-king-of-Korea",
+          "description": "Biography of the last Joseon king who proclaimed the Korean Empire in 1897."
+        }
+      ]
+    }
+  ],
+  "topic_metadata": {
+    "category": "History",
+    "difficulty": "beginner",
+    "estimated_minutes": 15,
+    "tags": ["korea", "dynasty", "east-asia", "history", "culture"]
+  }
+}
