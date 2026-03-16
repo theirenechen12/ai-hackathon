@@ -1,20 +1,34 @@
 {
-  "quizTitle": "Basic Math Quiz",
+  "quizTitle": "Quiz",
   "questions": [
     {
-      "question": "What is 2 + 2?",
-      "options": ["3", "4", "5", "6"],
-      "answer": "4"
+      "question": "Who was the founder of the Joseon dynasty and what was his position?",
+      "options": ["Lee Seong-min", "Yi Seong-gye", "Kim Jin-woo", "Woo Jae-min", "No answer text provided."],
+      "answer": "Yi Seong-gye"
     },
     {
-      "question": "What is 5 x 3?",
-      "options": ["15", "10", "8", "20"],
-      "answer": "15"
+      "question": "When did the Joseon dynasty begin?",
+      "options": ["0", "1392", "1492", "1776"],
+      "answer": "1392"
     },
     {
-      "question": "What is 10 ÷ 2?",
-      "options": ["2", "5", "10", "20"],
-      "answer": "5"
+      "question": "Which of the following prime numbers are multiples of the year Joseon dynasty began (check all that apply)",
+      "options": ["2", "3", "5", "7", "13", "17", "No answer text provided."],
+      "answer": ["2", "3"]
     }
+
+
+    {
+      "question": "During the American Revolution, which battle was the turning point?",
+      "options": ["Battle of Saratoga","Battle of Lexington/Concord","Battle of Yorktown","Winter at Valley Forge"],
+      "answer": "Battle of Saratoga"
+    }
+
+     {
+      "question": "Which of the following is true about the Battle of lexington/concord?",
+      "options": ["Paul Revere was the only rider who warned the militias that British troops were coming.", "The Battles of Lexington and Concord marked the beginning of the American Revolutionary War.", " Historians are certain who fired the first shot at Lexington."],
+      "answer": "The Battles of Lexington and Concord marked the beginning of the American Revolutionary War."
+    }
+    
   ]
 }
