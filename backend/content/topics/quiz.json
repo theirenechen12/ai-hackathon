@@ -133,12 +133,12 @@
     },
     {
       "id": "q8",
-      "type": "multiple",
+      "type": "single",
       "difficulty": "hard",
-      "question": "Which of the following are prime factors of the year the American Revolution began?",
-      "choices": ["2", "3", "5", "7", "71", "13"],
-      "correct_answer": ["5", "71"],
-      "explanation": "The American Revolution began in 1775. Its prime factorization is 5 × 5 × 71, so the prime factors are 5 and 71.",
+      "question": "Which of the following is a prime factor of the year the American Revolution began?",
+      "choices": ["2", "3", "5", "7", "13"],
+      "correct_answer": "5",
+      "explanation": "The American Revolution began in 1775. Its prime factorization is 5 × 5 × 71, so the prime factors are 5 and 71 and the correct answer is 5.",
       "curated_sources": [
         {
           "title": "American Revolution — Britannica",
