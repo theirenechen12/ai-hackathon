@@ -1,14 +1,11 @@
-"""
-watsonx Orchestrate research skill client.
+"""watsonx Orchestrate client for the main chat experience."""
 
-Calls the Orchestrate skill API with a system prompt and user question.
-Returns synthesized answer text + Tavily source URLs.
-
-When credentials are not configured, returns a stub response so the
-quiz path and UI work during development without IBM access.
-"""
+import asyncio
+from typing import Any, Iterable
 
 import httpx
+from ibm_cloud_sdk_core.authenticators import MCSPAuthenticator, MCSPV2Authenticator
+
 from app.config import get_settings
 
 
@@ -38,8 +35,11 @@ async def call_orchestrate(
 ) -> dict:
     settings = get_settings()
 
-    # If no credentials configured, return a stub so the UI still works
-    if not settings.orchestrate_api_key or not settings.orchestrate_skill_id:
+    if (
+        (not settings.orchestrate_api_key and not settings.orchestrate_access_token)
+        or not settings.orchestrate_agent_id
+        or not settings.orchestrate_instance_url
+    ):
         return _stub_response(topic_title, question)
 
     prompt = SYSTEM_PROMPT_TEMPLATE.format(
@@ -48,56 +48,128 @@ async def call_orchestrate(
         question=question,
     )
 
+    base_url = settings.orchestrate_instance_url.rstrip('/')
+    token = settings.orchestrate_access_token or _get_mcsp_token(
+        api_key=settings.orchestrate_api_key,
+        instance_url=base_url,
+        iam_url=settings.orchestrate_iam_url,
+    )
     headers = {
-        "Authorization": f"Bearer {settings.orchestrate_api_key}",
-        "Content-Type": "application/json",
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
     }
 
-    payload = {
-        "instance_id": settings.orchestrate_instance_id,
-        "skill_id": settings.orchestrate_skill_id,
-        "input": {
-            "system_prompt": prompt,
-            "user_message": question,
-        },
-    }
-
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(
-            f"{settings.orchestrate_api_url}/skills/invoke",
+    async with httpx.AsyncClient(timeout=settings.orchestrate_timeout_seconds) as client:
+        run_response = await client.post(
+            f'{base_url}/v1/orchestrate/runs',
             headers=headers,
-            json=payload,
+            json={
+                'agent_id': settings.orchestrate_agent_id,
+                'message': {'role': 'user', 'content': prompt},
+            },
         )
+        run_response.raise_for_status()
+        run_data = run_response.json()
+
+        run_id = run_data.get('run_id')
+        thread_id = run_data.get('thread_id')
+        if not run_id or not thread_id:
+            raise RuntimeError('Orchestrate did not return a run_id and thread_id.')
+
+        await _wait_for_run_completion(client, base_url, headers, run_id)
+        messages_response = await client.get(
+            f'{base_url}/v1/orchestrate/threads/{thread_id}/messages',
+            headers=headers,
+        )
+        messages_response.raise_for_status()
+
+    answer = _extract_latest_assistant_text(messages_response.json())
+    if not answer:
+        answer = 'I could not extract a response from watsonx Orchestrate.'
+    return {'answer': answer, 'sources': []}
+
+
+def _get_mcsp_token(*, api_key: str, instance_url: str, iam_url: str) -> str:
+    try:
+        return MCSPAuthenticator(apikey=api_key, url=iam_url).token_manager.get_token()
+    except Exception:
+        instance_id = instance_url.rsplit('instances/', 1)[-1]
+        return MCSPV2Authenticator(
+            apikey=api_key,
+            url='https://account-iam.platform.saas.ibm.com',
+            scope_collection_type='services',
+            scope_id=instance_id,
+        ).token_manager.get_token()
+
+
+async def _wait_for_run_completion(
+    client: httpx.AsyncClient,
+    base_url: str,
+    headers: dict[str, str],
+    run_id: str,
+    *,
+    max_attempts: int = 30,
+    delay_seconds: float = 2.0,
+) -> None:
+    terminal_states = {'completed', 'failed', 'cancelled'}
+
+    for _ in range(max_attempts):
+        response = await client.get(f'{base_url}/v1/orchestrate/runs/{run_id}', headers=headers)
         response.raise_for_status()
-        data = response.json()
+        payload = response.json()
+        status = str(payload.get('status', '')).lower()
+        if status in terminal_states:
+            if status != 'completed':
+                raise RuntimeError(f"Orchestrate run ended with status '{status}'.")
+            return
+        await asyncio.sleep(delay_seconds)
 
-    answer = data.get("output", {}).get("text", "No answer returned.")
-    sources = [
-        {
-            "title": s.get("title", "Source"),
-            "url": s["url"],
-            "excerpt": s.get("snippet", ""),
-        }
-        for s in data.get("sources", [])
-        if s.get("url")
-    ]
+    raise TimeoutError('Timed out waiting for watsonx Orchestrate to finish the run.')
 
-    return {"answer": answer, "sources": sources}
+
+def _extract_latest_assistant_text(payload: Any) -> str:
+    messages = payload if isinstance(payload, list) else payload.get('data', [])
+    if not isinstance(messages, list):
+        return ''
+
+    for message in reversed(messages):
+        if isinstance(message, dict) and message.get('role') == 'assistant':
+            return _content_to_text(message.get('content'))
+    return ''
+
+
+def _content_to_text(content: Any) -> str:
+    if isinstance(content, str):
+        return content.strip()
+    if isinstance(content, dict):
+        return _content_to_text(content.get('text') or content.get('content') or '')
+    if isinstance(content, Iterable) and not isinstance(content, (str, bytes)):
+        parts = []
+        for item in content:
+            if isinstance(item, dict):
+                if item.get('response_type') == 'text':
+                    parts.append(str(item.get('text', '')).strip())
+                elif 'text' in item:
+                    parts.append(str(item.get('text', '')).strip())
+                elif 'content' in item:
+                    parts.append(_content_to_text(item.get('content')))
+            elif isinstance(item, str):
+                parts.append(item.strip())
+        return '\n'.join(part for part in parts if part)
+    return ''
 
 
 def _stub_response(topic_title: str, question: str) -> dict:
     return {
-        "answer": (
-            f"[Demo mode — Orchestrate not connected] "
-            f"This is where the live research answer about '{question}' would appear. "
-            f"Once you add your watsonx Orchestrate credentials to .env, "
-            f"this chatbot will search the web and synthesize a real answer about {topic_title}."
+        'answer': (
+            f"[Demo mode - Orchestrate not connected] This is where the live research answer about '{question}' would appear. "
+            f"Once you add your watsonx Orchestrate credentials to .env.local, this chatbot will search the web and synthesize a real answer about {topic_title}."
         ),
-        "sources": [
+        'sources': [
             {
-                "title": "watsonx Orchestrate — IBM",
-                "url": "https://www.ibm.com/products/watsonx-orchestrate",
-                "excerpt": "Add ORCHESTRATE_API_KEY and ORCHESTRATE_SKILL_ID to .env to enable live research.",
+                'title': 'watsonx Orchestrate - IBM',
+                'url': 'https://www.ibm.com/products/watsonx-orchestrate',
+                'excerpt': 'Add ORCHESTRATE_INSTANCE_URL, ORCHESTRATE_API_KEY, and ORCHESTRATE_AGENT_ID to .env.local.',
             }
         ],
     }
